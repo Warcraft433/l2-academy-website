@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NavLink, Link, useLocation } from 'react-router-dom'
-import { ArrowRight, Menu, X } from 'lucide-react'
+import { Menu, PhoneCall, X } from 'lucide-react'
 import { navigation } from '../data/academyData.js'
 import Logo from './Logo.jsx'
 
@@ -31,7 +31,7 @@ export default function Navbar() {
   return (
     <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="container header-inner">
-        <Logo variant="light" />
+        <Logo variant="dark" />
 
         <nav className="desktop-nav" aria-label="Primary navigation">
           {navigation.map((item) => (
@@ -47,8 +47,8 @@ export default function Navbar() {
         </nav>
 
         <div className="header-actions">
-          <Link to="/contact" className="btn btn-white btn-sm header-enquire">
-            Enquire Now <ArrowRight size={15} />
+          <Link to="/contact" className="btn btn-dark btn-sm header-enquire">
+            <PhoneCall size={14} /> Contact Us
           </Link>
           <button
             type="button"
@@ -58,7 +58,7 @@ export default function Navbar() {
             aria-controls="mobile-drawer"
             onClick={() => setMenuOpen((prev) => !prev)}
           >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
@@ -76,8 +76,8 @@ export default function Navbar() {
                 {item.label}
               </NavLink>
             ))}
-            <Link to="/contact" className="btn btn-white mobile-drawer-cta">
-              Enquire Now <ArrowRight size={16} />
+            <Link to="/contact" className="btn btn-primary mobile-drawer-cta">
+              Enquire Now
             </Link>
           </div>
         </nav>

@@ -199,7 +199,7 @@ export default function ContactPage() {
                     type="tel"
                     required
                     autoComplete="tel"
-                    pattern="[+0-9()\s.\-]{7,20}"
+                    pattern="[+0-9\\s.\\-\\(\\)]{7,20}"
                     title="Enter a valid phone number"
                     placeholder="Mobile / WhatsApp number"
                     value={form.phone}

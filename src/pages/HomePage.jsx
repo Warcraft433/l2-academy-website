@@ -2,28 +2,22 @@ import { Link } from 'react-router-dom'
 import {
   ArrowRight,
   Atom,
-  BookOpen,
   BookOpenText,
   Calculator,
-  ClipboardCheck,
   GraduationCap,
   Laptop,
   Layers,
-  MessageCircleMore,
-  PhoneCall,
+  MessageCircle,
   TrendingUp,
+  UserRound,
   UserRoundCheck,
-  UsersRound,
 } from 'lucide-react'
-import { heroHighlights, homeCoursePreviews, whyAcademy } from '../data/academyData.js'
+import { homeCoursePreviews, whyAcademy } from '../data/academyData.js'
+import ParticleWaveCanvas from '../components/ParticleWaveCanvas.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import Reveal from '../components/Reveal.jsx'
 
 const iconMap = {
-  UsersRound,
-  BookOpen,
-  ClipboardCheck,
-  MessageCircleMore,
   UserRoundCheck,
   Laptop,
   Layers,
@@ -33,92 +27,89 @@ const iconMap = {
   BookOpenText,
 }
 
+const heroPillars = [
+  { icon: UserRound, title: 'One-to-One Focus', subtitle: 'Personal attention' },
+  { icon: Laptop, title: 'Flexible Learning', subtitle: 'Online & Offline' },
+  { icon: TrendingUp, title: 'Real Progress', subtitle: 'Build confidence' },
+]
+
 export default function HomePage() {
   return (
     <div className="page-home">
-      {/* Hero Section */}
+      {/* Typography-First Hero with Particle Wave */}
       <section className="hero-section">
-        <div className="container hero-grid">
-          <Reveal className="hero-content">
-            <span className="hero-badge">
-              <GraduationCap size={16} /> One-to-One Online Tuition
+        <ParticleWaveCanvas />
+        <div className="hero-glow" aria-hidden="true" />
+
+        <div className="container hero-centered">
+          <Reveal className="hero-stack">
+            <span className="hero-pill-badge">
+              <GraduationCap size={15} /> Online &amp; Offline Tuition
             </span>
-            <h1>Building Confidence Through Personalized Learning</h1>
-            <p className="hero-description">
-              Personalized guidance, clear concepts, and dedicated support for school and higher education students—helping every learner progress with confidence.
+
+            <h1 className="hero-title">
+              Personalized Learning.
+              <span>Confidence That Lasts.</span>
+            </h1>
+
+            <p className="hero-subtitle">
+              One-to-one guidance, clear concepts, and dedicated support for school and higher education students — online and offline.
             </p>
-            <div className="hero-cta-row">
-              <Link to="/courses" className="btn btn-white">
+
+            <div className="hero-actions">
+              <Link to="/courses" className="btn btn-primary">
                 Explore Courses <ArrowRight size={17} />
               </Link>
-              <Link to="/contact" className="btn btn-outline-light">
-                Contact Us
+              <Link to="/contact" className="btn btn-outline">
+                <MessageCircle size={16} /> Enquire Now
               </Link>
             </div>
           </Reveal>
 
-          <Reveal className="hero-media" delay={0.1}>
-            <div className="hero-image-card">
-              <img
-                src="/images/student-learning.jpg"
-                alt="Student learning in a calm, focused study environment"
-                fetchPriority="high"
-              />
-              <div className="hero-image-overlay">
-                <span className="overlay-title">L² Academy</span>
-                <span className="overlay-sub">Concept Clarity · Calm Guidance</span>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-
-        <div className="container hero-highlights-bar">
-          {heroHighlights.map(({ icon, title, subtitle }) => {
-            const Icon = iconMap[icon]
-            return (
-              <div key={title} className="hero-highlight-item">
-                <span className="hero-highlight-icon">
-                  <Icon size={19} strokeWidth={1.9} />
+          <Reveal className="hero-pillars" delay={0.08}>
+            {heroPillars.map(({ icon: Icon, title, subtitle }) => (
+              <div key={title} className="hero-pillar-item">
+                <span className="pillar-icon-box">
+                  <Icon size={18} strokeWidth={1.9} />
                 </span>
                 <div>
                   <strong>{title}</strong>
                   <small>{subtitle}</small>
                 </div>
               </div>
-            )
-          })}
+            ))}
+          </Reveal>
         </div>
       </section>
 
-      {/* Main Subjects Preview */}
+      {/* Core Subjects Preview */}
       <section className="section-block">
         <div className="container">
           <SectionHeading
-            title="Our Courses"
-            subtitle="Personalized tuition across school classes and higher education, with Mathematics as our core strength."
+            kicker="Subjects"
+            title="Focused support across key subjects"
+            subtitle="Mathematics is our core strength, alongside dedicated guidance for Science, English, and more."
             actionLabel="View All Courses"
             actionTo="/courses"
           />
 
-          <div className="preview-cards-grid">
+          <div className="minimal-subject-grid">
             {homeCoursePreviews.map((item, idx) => {
               const Icon = iconMap[item.icon]
               return (
-                <Reveal key={item.title} delay={idx * 0.05}>
+                <Reveal key={item.title} delay={idx * 0.04}>
                   <Link
                     to={`/courses?category=${encodeURIComponent(item.category === 'Other' ? 'All' : item.category)}`}
-                    className="course-preview-card"
+                    className="minimal-subject-item"
                   >
-                    <span className="preview-icon-box">
-                      <Icon size={22} strokeWidth={1.85} />
+                    <span className="subject-icon-soft">
+                      <Icon size={20} strokeWidth={1.85} />
                     </span>
-                    <div className="preview-card-copy">
+                    <div className="subject-copy">
                       <h3>{item.title}</h3>
-                      <span className="preview-sub">{item.subtitle}</span>
+                      <span>{item.subtitle}</span>
                     </div>
-                    <span className="preview-arrow-circle" aria-hidden="true">
-                      <ArrowRight size={16} />
-                    </span>
+                    <ArrowRight size={16} className="subject-arrow" />
                   </Link>
                 </Reveal>
               )
@@ -127,73 +118,68 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why L² Academy Banner */}
-      <section className="section-block section-tight">
+      {/* Why L² Academy — Open Editorial Row */}
+      <section className="section-block section-hairline">
         <div className="container">
-          <Reveal className="why-strip-card">
-            <div className="why-strip-title">
-              <span className="heading-accent-bar" aria-hidden="true" />
-              <h2>Why L² Academy?</h2>
-            </div>
-            <div className="why-strip-items">
-              {whyAcademy.map(({ icon, title, text }) => {
-                const Icon = iconMap[icon]
-                return (
-                  <div key={title} className="why-strip-item" title={text}>
-                    <span className="why-strip-icon">
-                      <Icon size={20} strokeWidth={1.9} />
-                    </span>
-                    <div>
-                      <strong>{title}</strong>
-                      <small>{text}</small>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
+          <SectionHeading
+            kicker="The L² Approach"
+            title="Designed for calm, clear understanding"
+          />
+
+          <div className="editorial-pillars-grid">
+            {whyAcademy.map(({ icon, title, text }) => {
+              const Icon = iconMap[icon]
+              return (
+                <div key={title} className="editorial-pillar">
+                  <span className="pillar-icon-soft">
+                    <Icon size={19} strokeWidth={1.85} />
+                  </span>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Concise Links to About & Classes/Results */}
+      <section className="section-block section-hairline">
+        <div className="container home-split-minimal">
+          <Reveal className="editorial-callout">
+            <span className="section-kicker">About Us</span>
+            <h3>A personal approach to teaching</h3>
+            <p>
+              Built on patience and concept clarity—giving every student room to ask questions without hesitation.
+            </p>
+            <Link to="/about" className="text-link">
+              About the Academy &amp; Founder <ArrowRight size={15} />
+            </Link>
+          </Reveal>
+
+          <Reveal className="editorial-callout" delay={0.06}>
+            <span className="section-kicker">Classes &amp; Proof</span>
+            <h3>How our sessions work</h3>
+            <p>
+              Explore our online and offline tuition format, classes offered, and dedicated spaces for student progress.
+            </p>
+            <Link to="/classes-results" className="text-link">
+              View Classes &amp; Results <ArrowRight size={15} />
+            </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* Compact Previews: About + Teaching Approach */}
+      {/* Minimal Enquiry CTA */}
       <section className="section-block">
-        <div className="container home-split-grid">
-          <Reveal className="info-preview-card">
-            <span className="eyebrow-tag">About L² Academy</span>
-            <h3>Education built around the individual student</h3>
-            <p>
-              We focus on patient, concept-first teaching in a one-to-one setting—so students feel comfortable asking questions and building lasting understanding.
-            </p>
-            <Link to="/about" className="btn btn-outline-navy btn-sm">
-              Meet the Academy &amp; Founder <ArrowRight size={15} />
-            </Link>
-          </Reveal>
-
-          <Reveal className="info-preview-card info-preview-card--tint" delay={0.08}>
-            <span className="eyebrow-tag">Classes &amp; Teaching Approach</span>
-            <h3>Making Mathematics &amp; core subjects simple</h3>
-            <p>
-              Whether learning online from home or offline where applicable, every lesson connects concepts clearly rather than relying on rote memorization.
-            </p>
-            <Link to="/classes-results" className="btn btn-primary btn-sm">
-              Explore Classes &amp; Results <ArrowRight size={15} />
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Parent Enquiry CTA */}
-      <section className="section-block section-cta-bottom">
         <div className="container">
-          <Reveal className="cta-banner">
+          <Reveal className="minimal-cta-box">
             <div>
-              <h2>Have a question about classes, timings, or subjects?</h2>
-              <p>
-                Speak with us directly to discuss your student’s class, learning goals, and a suitable schedule.
-              </p>
+              <h2>Ready to discuss your student’s learning goals?</h2>
+              <p>Reach out to ask about subjects, timings, or an introductory session.</p>
             </div>
-            <Link to="/contact" className="btn btn-white">
-              <PhoneCall size={17} /> Enquire Now
+            <Link to="/contact" className="btn btn-primary">
+              Enquire Now <ArrowRight size={16} />
             </Link>
           </Reveal>
         </div>

@@ -5,7 +5,7 @@ import Logo from './Logo.jsx'
 
 function InstagramIcon() {
   return (
-    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
       <rect x="3" y="3" width="18" height="18" rx="5" />
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" stroke="none" />
@@ -15,7 +15,7 @@ function InstagramIcon() {
 
 function FacebookIcon() {
   return (
-    <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
       <path d="M13.6 21v-8.2h2.7l.4-3.2h-3.1V7.6c0-.9.3-1.6 1.6-1.6h1.7V3.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.3 1.5-4.3 4.4V9.6H7.2v3.2h2.9V21h3.5Z" />
     </svg>
   )
@@ -31,14 +31,14 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <Logo variant="light" />
+          <Logo variant="dark" />
           <p className="footer-desc">
-            Personalized one-to-one online tuition—and offline support where applicable—focused on concept clarity, calm guidance, and student confidence.
+            Personalized one-to-one tuition—online and offline where applicable—built around concept clarity and student confidence.
           </p>
         </div>
 
         <div className="footer-links-col">
-          <h3>Quick Links</h3>
+          <h3>Explore</h3>
           <div className="footer-links">
             {navigation.map((item) => (
               <Link key={item.path} to={item.path}>
@@ -49,7 +49,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-social-col">
-          <h3>Connect With Us</h3>
+          <h3>Connect</h3>
           <p className="footer-contact-note">
             {academy.email ? academy.email : 'Contact details & WhatsApp can be updated in academyData.js'}
           </p>
@@ -74,11 +74,11 @@ export default function Footer() {
             )}
             {whatsappUrl ? (
               <a href={whatsappUrl} target="_blank" rel="noreferrer" aria-label="WhatsApp">
-                <MessageCircle size={17} />
+                <MessageCircle size={16} />
               </a>
             ) : (
               <Link to="/contact" aria-label="Enquire via Contact page" title="WhatsApp placeholder — go to Contact">
-                <MessageCircle size={17} />
+                <MessageCircle size={16} />
               </Link>
             )}
           </div>
